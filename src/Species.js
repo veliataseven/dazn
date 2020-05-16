@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import convertURL from './utils/convertURL';
 
 const Species = ({ species }) => {
   const [speciesItems, setSpeciesItems] = useState([]);
   React.useEffect(() => {
     const getSpecies = async () => {
-      return Promise.all(species.map(async (url) => await axios(url)));
+      return Promise.all(
+        species.map(async (url) => await axios(convertURL(url))),
+      );
     };
     getSpecies().then((data) => setSpeciesItems(data));
   }, [species]);

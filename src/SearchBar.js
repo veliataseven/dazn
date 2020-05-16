@@ -14,7 +14,7 @@ const SearchBar = ({ actors, loading }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (text.length > 0) {
+    if (text.length > 2) {
       const matched = actors.filter(
         (actor) => actor.name.toLowerCase().indexOf(text.toLowerCase()) > -1,
       );

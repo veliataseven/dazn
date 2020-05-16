@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Profile from './Images/profile-avatar.png';
+import convertURL from './utils/convertURL';
 
 const SearchContent = ({ matchedActor }) => {
   const [movies, setMovies] = useState([]);
@@ -13,7 +14,9 @@ const SearchContent = ({ matchedActor }) => {
     const getData = async () => {
       return Promise.all(
         films.map(async (film) => {
-          return Promise.all(film.map(async (url) => await axios(url)));
+          return Promise.all(
+            film.map(async (url) => await axios(convertURL(url))),
+          );
         }),
       );
     };

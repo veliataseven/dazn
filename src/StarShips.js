@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import convertURL from './utils/convertURL';
 
 const StarShips = ({ starShips }) => {
   const [starShipsArr, setStarShipsArr] = useState([]);
@@ -7,7 +8,7 @@ const StarShips = ({ starShips }) => {
     const getData = async () => {
       return Promise.all(
         starShips.map(async (url) => {
-          const { data } = await axios(url);
+          const { data } = await axios(convertURL(url));
           return data;
         }),
       );
